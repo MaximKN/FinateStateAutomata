@@ -1,7 +1,7 @@
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class FSA {
-    private ArrayList<State> states = new ArrayList<State>();
+    private LinkedList<State> states = new LinkedList<State>();
 
     public void addState(State state){
         this.states.add(state);
@@ -20,9 +20,5 @@ public class FSA {
                 return state;
         }
         return null;
-    }
-
-    public boolean isEdgeExist(State state, String transition){
-        return state.isEdgeExist(transition);
     }
 }

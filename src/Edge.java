@@ -1,16 +1,20 @@
 
 public class Edge {
-    private String transition;
+    private char transition;
     private int fromStateNumber;
     private int toStateNumber;
 
-    public Edge(int fromStateNumber, String transition, int toStateNumber){
+    public Edge(int fromStateNumber, char transition, int toStateNumber){
         this.fromStateNumber = fromStateNumber;
         this.transition = transition;
         this.toStateNumber = toStateNumber;
     }
 
-    public String getTransition(){
-        return transition;
+    public char getTransition(){
+        return this.transition;
     }
+    public int getToStateNumber(){
+        return this.toStateNumber;
+    }
+    public int getFromStateNumber(){ return this.fromStateNumber;}
 }

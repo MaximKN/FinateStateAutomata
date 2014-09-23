@@ -4,20 +4,25 @@ public class State {
 
     private LinkedList<Edge> edges = new LinkedList<Edge>();
     private int number;
+    private boolean isAcceptedState;
 
-    public State(int number){
+    public State(int number, boolean isAcceptedState){
         this.number = number;
+        this.isAcceptedState = isAcceptedState;
     }
     public int getNumber(){
         return number;
     }
     public void addEdge(Edge edge){
-        edges.add(edge);
+        this.edges.add(edge);
     }
-    public boolean isEdgeExist(String c){
+    public Edge getEdge(char c){
         for (Edge edge : edges) {
-            if(edge.getTransition().equals(c)) return true;
+            if(edge.getTransition() == c) return edge;
         }
-        return false;
+        return null;
+    }
+    public boolean getIsAcceptedState(){
+        return this.isAcceptedState;
     }
 }
