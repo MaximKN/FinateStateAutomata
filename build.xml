@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="w02practical" default="all">
+  
+  
+  <property file="build.properties"/>
+  <!-- Uncomment the following property if no tests compilation is needed -->
+  <!-- 
+  <property name="skip.tests" value="true"/>
+   -->
+  
+  <!-- Compiler options -->
+  
+  <property name="compiler.debug" value="on"/>
+  <property name="compiler.generate.no.warnings" value="off"/>
+  <property name="compiler.args" value=""/>
+  <property name="compiler.max.memory" value="700m"/>
+  <patternset id="ignored.files">
+    <exclude name="**/CVS/**"/>
+    <exclude name="**/SCCS/**"/>
+    <exclude name="**/RCS/**"/>
+    <exclude name="**/rcs/**"/>
+    <exclude name="**/.DS_Store/**"/>
+    <exclude name="**/.svn/**"/>
+    <exclude name="**/.pyc/**"/>
+    <exclude name="**/.pyo/**"/>
+    <exclude name="**/*.pyc/**"/>
+    <exclude name="**/*.pyo/**"/>
+    <exclude name="**/.git/**"/>
+    <exclude name="**/*.hprof/**"/>
+    <exclude name="**/_svn/**"/>
+    <exclude name="**/.hg/**"/>
+    <exclude name="**/*.lib/**"/>
+    <exclude name="**/*~/**"/>
+    <exclude name="**/__pycache__/**"/>
+    <exclude name="**/.bundle/**"/>
+    <exclude name="**/*.rbc/**"/>
+  </patternset>
+  <patternset id="library.patterns">
+    <include name="*.zip"/>
+    <include name="*.apk"/>
+    <include name="*.war"/>
+    <include name="*.egg"/>
+    <include name="*.ear"/>
+    <include name="*.ane"/>
+    <include name="*.swc"/>
+    <include name="*.jar"/>
+  </patternset>
+  <patternset id="compiler.resources">
+    <exclude name="**/?*.java"/>
+    <exclude name="**/?*.form"/>
+    <exclude name="**/?*.class"/>
+    <exclude name="**/?*.groovy"/>
+    <exclude name="**/?*.scala"/>
+    <exclude name="**/?*.flex"/>
+    <exclude name="**/?*.kt"/>
+    <exclude name="**/?*.clj"/>
+  </patternset>
+  
+  <!-- JDK definitions -->
+  
+  <property name="jdk.bin.1.8" value="${jdk.home.1.8}/bin"/>
+  <path id="jdk.classpath.1.8">
+    <fileset dir="${jdk.home.1.8}">
+      <include name="lib/ant-javafx.jar"/>
+      <include name="lib/dt.jar"/>
+      <include name="lib/javafx-mx.jar"/>
+      <include name="lib/jconsole.jar"/>
+      <include name="lib/sa-jdi.jar"/>
+      <include name="lib/tools.jar"/>
+      <include name="jre/lib/charsets.jar"/>
+      <include name="jre/lib/deploy.jar"/>
+      <include name="jre/lib/htmlconverter.jar"/>
+      <include name="jre/lib/javaws.jar"/>
+      <include name="jre/lib/jce.jar"/>
+      <include name="jre/lib/jfr.jar"/>
+      <include name="jre/lib/jfxswt.jar"/>
+      <include name="jre/lib/jsse.jar"/>
+      <include name="jre/lib/management-agent.jar"/>
+      <include name="jre/lib/plugin.jar"/>
+      <include name="jre/lib/resources.jar"/>
+      <include name="jre/lib/rt.jar"/>
+      <include name="jre/lib/ext/cldrdata.jar"/>
+      <include name="jre/lib/ext/dnsns.jar"/>
+      <include name="jre/lib/ext/jfxrt.jar"/>
+      <include name="jre/lib/ext/localedata.jar"/>
+      <include name="jre/lib/ext/nashorn.jar"/>
+      <include name="jre/lib/ext/sunec.jar"/>
+      <include name="jre/lib/ext/sunjce_provider.jar"/>
+      <include name="jre/lib/ext/sunpkcs11.jar"/>
+      <include name="jre/lib/ext/zipfs.jar"/>
+    </fileset>
+  </path>
+  
+  <property name="project.jdk.home" value="${jdk.home.1.8}"/>
+  <property name="project.jdk.bin" value="${jdk.bin.1.8}"/>
+  <property name="project.jdk.classpath" value="jdk.classpath.1.8"/>
+  
+  <!-- Modules -->
+  
+  
+  <!-- Module W02Practical -->
+  
+  <dirname property="module.w02practical.basedir" file="${ant.file}"/>
+  
+  
+  <property name="module.jdk.home.w02practical" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.w02practical" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.w02practical" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.w02practical" value="-encoding UTF-8 -source 1.6 ${compiler.args}"/>
+  
+  <property name="w02practical.output.dir" value="${module.w02practical.basedir}/out/production/W02Practical"/>
+  <property name="w02practical.testoutput.dir" value="${module.w02practical.basedir}/out/test/W02Practical"/>
+  
+  <path id="w02practical.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="w02practical.module.production.classpath">
+    <path refid="${module.jdk.classpath.w02practical}"/>
+  </path>
+  
+  <path id="w02practical.runtime.production.module.classpath">
+    <pathelement location="${w02practical.output.dir}"/>
+  </path>
+  
+  <path id="w02practical.module.classpath">
+    <path refid="${module.jdk.classpath.w02practical}"/>
+    <pathelement location="${w02practical.output.dir}"/>
+  </path>
+  
+  <path id="w02practical.runtime.module.classpath">
+    <pathelement location="${w02practical.testoutput.dir}"/>
+    <pathelement location="${w02practical.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.w02practical">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.w02practical">
+    <patternset refid="excluded.from.module.w02practical"/>
+  </patternset>
+  
+  <path id="w02practical.module.sourcepath">
+    <dirset dir="${module.w02practical.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.w02practical" depends="compile.module.w02practical.production,compile.module.w02practical.tests" description="Compile module W02Practical"/>
+  
+  <target name="compile.module.w02practical.production" description="Compile module W02Practical; production classes">
+    <mkdir dir="${w02practical.output.dir}"/>
+    <javac destdir="${w02practical.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.w02practical}/javac">
+      <compilerarg line="${compiler.args.w02practical}"/>
+      <bootclasspath refid="w02practical.module.bootclasspath"/>
+      <classpath refid="w02practical.module.production.classpath"/>
+      <src refid="w02practical.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.w02practical"/>
+    </javac>
+    
+    <copy todir="${w02practical.output.dir}">
+      <fileset dir="${module.w02practical.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.w02practical.tests" depends="compile.module.w02practical.production" description="compile module W02Practical; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.w02practical" description="cleanup module">
+    <delete dir="${w02practical.output.dir}"/>
+    <delete dir="${w02practical.testoutput.dir}"/>
+  </target>
+  
+  <target name="init" description="Build initialization">
+    <!-- Perform any build initialization in this target -->
+  </target>
+  
+  <target name="clean" depends="clean.module.w02practical" description="cleanup all"/>
+  
+  <target name="build.modules" depends="init, clean, compile.module.w02practical" description="build all modules"/>
+  
+  <target name="all" depends="build.modules" description="build all"/>
+</project>
