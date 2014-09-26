@@ -1,8 +1,11 @@
 package uk.ac.standrews.fsainterpreter.parser;
 
 import uk.ac.standrews.fsainterpreter.representation.*;
+
+import java.util.EmptyStackException;
+
 /**
- * This class is used to check that the word specified by user is in finite state automate
+ * This class is used to check that the word specified by user is in finite state automata
  * @author  cs2001 student
  */
 public class FSAChecker {
@@ -14,6 +17,9 @@ public class FSAChecker {
      * @return is word found or not
      */
     public boolean check(FSA fsa, String word){
+
+        if (fsa == null || word == null)    throw new NullPointerException();
+        if (fsa.getStates().size() == 0 || word.equals(""))    throw new EmptyStackException();
 
         int length = word.length();
         int charNumber = 0;
